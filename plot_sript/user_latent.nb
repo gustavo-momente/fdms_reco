@@ -1,0 +1,478 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     18397,        469]
+NotebookOptionsPosition[     17641,        440]
+NotebookOutlinePosition[     18005,        456]
+CellTagsIndexPosition[     17962,        453]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ULraw", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", 
+    "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\export_data\\\\user_latent.csv\>\"", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6251391533114023`*^9, 3.625139169738345*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"u", ",", "l"}], "}"}], "=", 
+   RowBox[{"Dimensions", "[", "ULraw", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.625139171943473*^9, 3.6251391796638937`*^9}, {
+  3.6251394721108503`*^9, 3.625139482991461*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 UPMC\\\\Cours\\\\FDMS\
+\\\\TME_rec\\\\IMG\\\\user_latent.png\>\"", ",", 
+   RowBox[{"MatrixPlot", "[", 
+    RowBox[{
+     RowBox[{"Transpose", "[", "ULraw", "]"}], ",", 
+     RowBox[{"Frame", "\[Rule]", " ", "False"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+     RowBox[{"Mesh", "\[Rule]", " ", "None"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", "\"\<DarkRainbow\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6251391870462933`*^9, 3.625139194467716*^9}, {
+  3.6251392494748125`*^9, 3.6251392532020283`*^9}, {3.625139287829996*^9, 
+  3.62513931726965*^9}, {3.625139495182149*^9, 3.625139686609422*^9}, {
+  3.6251410799112754`*^9, 3.625141144665883*^9}, {3.625141224844946*^9, 
+  3.6251412438240037`*^9}, {3.6251412789969864`*^9, 3.6251413366782403`*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\\\\user_latent.png\"\>"], "Output",
+ CellChangeTimes->{
+  3.625139195140768*^9, 3.625139253505043*^9, {3.625139295612432*^9, 
+   3.625139311967345*^9}, {3.625139508925886*^9, 3.625139624690959*^9}, {
+   3.6251396590918913`*^9, 3.6251396871274757`*^9}, {3.625141091696928*^9, 
+   3.6251411305071115`*^9}, 3.625141245239087*^9, {3.6251412880405016`*^9, 
+   3.6251413373892517`*^9}, 3.625153032270691*^9, 3.625153128875676*^9, 
+   3.6251545626374617`*^9, 3.62515610916745*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nGroups", " ", "=", " ", "10"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"clusterInfo", " ", "=", " ", 
+   RowBox[{"ClusteringComponents", "[", 
+    RowBox[{
+     RowBox[{"ULraw", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", "nGroups", ",", 
+     "1", ",", 
+     RowBox[{"DistanceFunction", "\[Rule]", "SquaredEuclideanDistance"}], ",", 
+     RowBox[{"Method", "\[Rule]", " ", "\"\<KMeans\>\""}], ",", 
+     RowBox[{"\"\<RandomSeed\>\"", "\[Rule]", "1"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.6251443496151094`*^9, 3.625144383013957*^9}, {
+   3.6251444291815643`*^9, 3.625144439653126*^9}, {3.625144526759042*^9, 
+   3.625144527455102*^9}, {3.6251456913746147`*^9, 3.6251457005871334`*^9}, {
+   3.6251466046371713`*^9, 3.625146610701517*^9}, {3.6251466772028856`*^9, 
+   3.6251466773299255`*^9}, 3.62514672639966*^9, {3.6251532457452297`*^9, 
+   3.6251532662784023`*^9}, {3.6251532991182537`*^9, 3.625153300006275*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClusterIDS", "=", 
+    RowBox[{
+     RowBox[{"Tally", "[", "clusterInfo", "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"labeledData", " ", "=", " ", 
+     RowBox[{"ConstantArray", "[", 
+      RowBox[{
+       RowBox[{"List", "[", "]"}], ",", 
+       RowBox[{"Length", "[", "ClusterIDS", "]"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", " ", 
+       RowBox[{"Length", "[", "clusterInfo", "]"}]}], ",", 
+      RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"ID", " ", "=", " ", 
+        RowBox[{"clusterInfo", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{
+         RowBox[{"labeledData", "[", 
+          RowBox[{"[", "ID", "]"}], "]"}], ",", 
+         RowBox[{"ULraw", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}]}], "]"}], ";"}]}],
+      "]"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tmp", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"ULraw", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "2"}], "}"}]}], "]"}], "]"}], ",", 
+     RowBox[{"ArrayReshape", "[", 
+      RowBox[{"clusterInfo", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Length", "[", "clusterInfo", "]"}], ",", "1"}], "}"}]}], 
+      "]"}], ",", "2"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.625144754200382*^9, 3.625144917196787*^9}, {
+   3.625144961527253*^9, 3.6251450086019955`*^9}, 3.6251451175130663`*^9, {
+   3.6251452068818884`*^9, 3.625145419422782*^9}, {3.625145657031682*^9, 
+   3.625145659102778*^9}, {3.625146685912404*^9, 3.625146686119413*^9}, {
+   3.625153273695815*^9, 3.625153290568774*^9}, {3.6251533522398787`*^9, 
+   3.6251533586262426`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 UPMC\\\\Cours\\\\FDMS\
+\\\\TME_rec\\\\IMG\\\\user_clusters.png\>\"", ",", 
+   RowBox[{"ListDensityPlot", "[", 
+    RowBox[{"tmp", ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", " ", "\"\<Rainbow\>\""}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.625146205506799*^9, 3.625146267052229*^9}, {
+   3.625146297056456*^9, 3.625146332931468*^9}, {3.625146407894681*^9, 
+   3.6251464675414557`*^9}, {3.625146746234789*^9, 3.62514679728165*^9}, {
+   3.6251468470505733`*^9, 3.625146876857247*^9}, {3.6251470509166164`*^9, 
+   3.625147082976411*^9}, {3.625147168441208*^9, 3.6251471880773516`*^9}, {
+   3.6251472234763384`*^9, 3.6251472706809716`*^9}, 3.6251473841675076`*^9, {
+   3.6251475620902004`*^9, 3.625147577387094*^9}, {3.6251476244947057`*^9, 
+   3.6251476488061028`*^9}, {3.625153712313091*^9, 3.625153744504902*^9}, 
+   3.6251537888343678`*^9}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\\\\user_clusters.png\"\>"], "Output",
+ CellChangeTimes->{{3.6251462138102665`*^9, 3.6251462676102886`*^9}, {
+   3.625146298454552*^9, 3.625146333630508*^9}, {3.6251464119798975`*^9, 
+   3.625146468221509*^9}, 3.6251466152957687`*^9, 3.6251466914127073`*^9, {
+   3.6251467298318458`*^9, 3.625146798420678*^9}, {3.6251468480606103`*^9, 
+   3.6251468778802834`*^9}, {3.6251470524086723`*^9, 3.625147083713442*^9}, 
+   3.625147241034297*^9, 3.6251472719390316`*^9, 3.625147385480611*^9, {
+   3.6251475633312874`*^9, 3.625147578435136*^9}, {3.6251476258327703`*^9, 
+   3.6251476495741043`*^9}, 3.625153052198825*^9, 3.6251533623044477`*^9, {
+   3.625153745651946*^9, 3.6251537908594804`*^9}, 3.62515456872882*^9, 
+   3.6251561128096447`*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"F", "[", 
+    RowBox[{"Lower_", ",", "Upper_", ",", "clusterUsers_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     TagBox[GridBox[{
+        {"\[Piecewise]", GridBox[{
+           {
+            RowBox[{
+             RowBox[{"ToString", "[", "Lower", "]"}], "<>", "\"\<-\>\"", "<>", 
+             RowBox[{"ToString", "[", "Upper", "]"}]}], 
+            RowBox[{
+             RowBox[{"Lower", " ", "\[NotEqual]", " ", 
+              RowBox[{"-", "Infinity"}]}], " ", "&&", " ", 
+             RowBox[{"Upper", "\[NotEqual]", " ", "Infinity"}]}]},
+           {
+            RowBox[{"\"\<<\>\"", "<>", 
+             RowBox[{"ToString", "[", "Upper", "]"}]}], 
+            RowBox[{"Lower", " ", "\[Equal]", " ", 
+             RowBox[{"-", "Infinity"}]}]},
+           {
+            RowBox[{"\"\<>\>\"", "<>", 
+             RowBox[{"ToString", "[", "Lower", "]"}]}], 
+            RowBox[{"Upper", " ", "\[Equal]", " ", "Infinity"}]}
+          },
+          AllowedDimensions->{2, Automatic},
+          Editable->True,
+          
+          GridBoxAlignment->{
+           "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+            "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+            "Rows" -> {{1.}}, "RowsIndexed" -> {}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.84]}, 
+              Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}, "RowsIndexed" -> {}},
+          Selectable->True]}
+       },
+       GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+          "RowsIndexed" -> {}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+         "RowsIndexed" -> {}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.35]}, 
+           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.4]}, 
+           Offset[0.2]}, "RowsIndexed" -> {}}],
+      "Piecewise",
+      DeleteWithContents->True,
+      Editable->False,
+      SelectWithContents->True,
+      Selectable->False], ",", 
+     RowBox[{"Total", "[", 
+      RowBox[{
+       RowBox[{"Select", "[", 
+        RowBox[{
+         RowBox[{"Sort", "[", 
+          RowBox[{"Tally", "[", 
+           RowBox[{"clusterUsers", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"Lower", "\[LessEqual]", " ", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "<", "Upper"}], "&"}]}], "]"}], 
+       "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bins", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "Infinity"}], ",", "20"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"20", ",", "30"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"30", ",", "40"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"40", ",", "50"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"50", ",", "60"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"60", ",", "Infinity"}], "}"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.625154603695899*^9, 3.6251546482263756`*^9}, {
+  3.625154754096403*^9, 3.6251547555614586`*^9}, {3.6251548571191444`*^9, 
+  3.6251548844257135`*^9}, {3.625154921335759*^9, 3.6251549240318956`*^9}, {
+  3.625154960047406*^9, 3.6251551574210043`*^9}, {3.6251551897628336`*^9, 
+  3.6251556356480985`*^9}, {3.6251557654225616`*^9, 3.6251558534350505`*^9}, {
+  3.6251559859194803`*^9, 3.6251559882625885`*^9}, {3.625156027405881*^9, 
+  3.625156043108772*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"userdata", "=", 
+   RowBox[{
+   "Import", "[", 
+    "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\ml-100k\\\\u.user.tsv\>\"", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.625147826805149*^9, 3.625147841304959*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"type", "=", 
+   RowBox[{"{", 
+    RowBox[{"\"\<age\>\"", ",", "\"\<sex\>\"", ",", "\"\<prof\>\""}], "}"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "folder", "=", 
+   "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\\\\user_clusters\\\\\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"DirectoryQ", "[", "folder", "]"}], ",", 
+    RowBox[{
+     RowBox[{"DeleteDirectory", "[", 
+      RowBox[{"folder", ",", 
+       RowBox[{"DeleteContents", "\[Rule]", "True"}]}], "]"}], ";", 
+     RowBox[{"CreateDirectory", "[", "folder", "]"}]}], ",", 
+    RowBox[{"CreateDirectory", "[", "folder", "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", " ", 
+    RowBox[{"Length", "[", "ClusterIDS", "]"}]}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"ID", ",", "clusterUsers", ",", "p"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"ID", " ", "=", " ", 
+       RowBox[{"ClusterIDS", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"clusterUsers", "=", 
+       RowBox[{"Select", "[", 
+        RowBox[{"userdata", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"tmp", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", 
+              RowBox[{"-", "1"}]}], "]"}], "]"}], "\[Equal]", "ID"}], "&"}]}],
+         "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"clusterUsers", "=", 
+       RowBox[{"clusterUsers", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", 
+          RowBox[{"{", 
+           RowBox[{"2", ",", "3", ",", "4"}], "}"}]}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"e", "=", 
+       RowBox[{"{", 
+        RowBox[{"Plain", ",", "12", ",", 
+         RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"p", "[", "i_", "]"}], ":=", 
+       RowBox[{"\[Piecewise]", GridBox[{
+          {
+           RowBox[{"Sort", "[", 
+            RowBox[{"Tally", "[", 
+             RowBox[{"clusterUsers", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "i"}], "]"}], "]"}], "]"}], "]"}], 
+           RowBox[{"i", "\[NotEqual]", " ", "1"}]},
+          {
+           RowBox[{
+            RowBox[{
+             RowBox[{"F", "[", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], ",", 
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], ",", "clusterUsers"}], "]"}], 
+             "&"}], "/@", "bins"}], 
+           RowBox[{"i", "\[Equal]", "1"}]}
+         }]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Export", "[", 
+         RowBox[{
+          RowBox[{"folder", "<>", 
+           RowBox[{"type", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\<_\>\"", "<>", 
+           RowBox[{"ToString", "[", "ID", "]"}], "<>", "\"\<.png\>\""}], ",", 
+          RowBox[{"PieChart", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"p", "[", "i", "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+            RowBox[{"SectorOrigin", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"Automatic", ",", "1"}], "}"}]}], ",", 
+            RowBox[{"ChartLabels", "\[Rule]", 
+             RowBox[{"Placed", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"#", ",", "e"}], "]"}], "&"}], "/@", 
+                RowBox[{
+                 RowBox[{"p", "[", "i", "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ",", 
+               "\"\<RadialCallout\>\""}], "]"}]}], ",", 
+            RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "3"}], "}"}]}], "]"}]}]}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6251520546499577`*^9, 3.6251521831021442`*^9}, {
+  3.6251522380813355`*^9, 3.6251523994893756`*^9}, {3.6251524375716963`*^9, 
+  3.62515246762435*^9}, {3.6251525387783394`*^9, 3.6251525389213657`*^9}, {
+  3.625152657066111*^9, 3.6251526588142085`*^9}, {3.625152720059617*^9, 
+  3.6251527526464663`*^9}, {3.6251528124873447`*^9, 3.6251528235039563`*^9}, {
+  3.625152917980256*^9, 3.625152924532604*^9}, {3.6251535573394823`*^9, 
+  3.6251536211500573`*^9}, {3.6251536707077622`*^9, 3.625153671134756*^9}, {
+  3.6251544973838186`*^9, 3.625154505407283*^9}, {3.625154676193952*^9, 
+  3.6251546768449955`*^9}, {3.6251547071467023`*^9, 3.625154743967759*^9}, {
+  3.625155927984236*^9, 3.6251559358606567`*^9}, {3.625156068629174*^9, 
+  3.6251560976758184`*^9}, {3.625156140919224*^9, 3.62515614510248*^9}}]
+},
+WindowSize->{944, 1001},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 76, 1, 31, "Input"],
+Cell[636, 23, 321, 8, 72, "Input"],
+Cell[960, 33, 277, 7, 31, "Input"],
+Cell[CellGroupData[{
+Cell[1262, 44, 950, 17, 72, "Input"],
+Cell[2215, 63, 582, 8, 31, "Output"]
+}, Open  ]],
+Cell[2812, 74, 1076, 22, 72, "Input"],
+Cell[3891, 98, 2126, 56, 132, "Input"],
+Cell[CellGroupData[{
+Cell[6042, 158, 1198, 21, 72, "Input"],
+Cell[7243, 181, 845, 11, 31, "Output"]
+}, Open  ]],
+Cell[8103, 195, 4026, 104, 132, "Input"],
+Cell[12132, 301, 301, 8, 52, "Input"],
+Cell[12436, 311, 5201, 127, 369, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

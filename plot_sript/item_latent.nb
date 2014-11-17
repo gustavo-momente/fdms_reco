@@ -1,0 +1,413 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     14619,        404]
+NotebookOptionsPosition[     13755,        371]
+NotebookOutlinePosition[     14119,        387]
+CellTagsIndexPosition[     14076,        384]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ILraw", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", 
+    "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\export_data\\\\item_latent.csv\>\"", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6251391533114023`*^9, 3.625139169738345*^9}, {
+  3.6251432056270595`*^9, 3.6251432174197035`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"itemdata", " ", "=", " ", 
+    RowBox[{
+    "Import", "[", 
+     "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\ml-100k\\\\u.item.tsv\>\"", "]"}]}], 
+   ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Removing", " ", "years"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", " ", 
+     RowBox[{"Length", "[", "itemdata", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"itemdata", "[", 
+       RowBox[{"[", 
+        RowBox[{"i", ",", "2"}], "]"}], "]"}], "=", 
+      RowBox[{
+       RowBox[{"StringSplit", "[", 
+        RowBox[{
+         RowBox[{"itemdata", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", "\"\< (\>\""}], "]"}], 
+       "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ";"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"itemdata", " ", "=", " ", 
+   RowBox[{"Drop", "[", 
+    RowBox[{"itemdata", ",", "None", ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "6"}], "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.625141429853727*^9, 3.625141443066471*^9}, {
+   3.625141510116213*^9, 3.6251415529466276`*^9}, {3.6251415875387697`*^9, 
+   3.6251416122231436`*^9}, {3.625141651917347*^9, 3.625141673059546*^9}, {
+   3.625141736623127*^9, 3.625141766637869*^9}, {3.6251419259197993`*^9, 
+   3.6251419262907906`*^9}, {3.625142176095318*^9, 3.625142177401405*^9}, {
+   3.6251422442501707`*^9, 3.625142256016823*^9}, {3.625142306371833*^9, 
+   3.625142338984642*^9}, {3.6251431763428364`*^9, 3.6251431767308407`*^9}, {
+   3.6251432362497725`*^9, 3.625143244287201*^9}, {3.6251538422143755`*^9, 
+   3.625153857730816*^9}, {3.6251562604620123`*^9, 3.6251562710446014`*^9}, 
+   3.6251563043704443`*^9, 3.625156478869317*^9, {3.6251566011868296`*^9, 
+   3.6251566015358553`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"itemdata", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.625156607228157*^9, 3.6251566105633793`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "\<\"Toy Story\"\>", ",", "0", ",", "0", ",", "1", ",", "1", ",", 
+   "1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.625156610833358*^9, 3.6251568045395103`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"U", ",", "W", ",", "S"}], "}"}], "=", 
+   RowBox[{"SingularValueDecomposition", "[", 
+    RowBox[{"ILraw", ",", "2"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6251566894907913`*^9, 3.6251567244767504`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nClusters", "=", "10"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"clusterInforItems", " ", "=", " ", 
+   RowBox[{"ClusteringComponents", "[", 
+    RowBox[{"U", ",", "nClusters", ",", "1", ",", 
+     RowBox[{"DistanceFunction", "\[Rule]", "SquaredEuclideanDistance"}], ",", 
+     RowBox[{"Method", "\[Rule]", " ", "\"\<KMeans\>\""}], ",", 
+     RowBox[{"\"\<RandomSeed\>\"", "\[Rule]", "1"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"IClusterIDS", "=", 
+   RowBox[{
+    RowBox[{"Tally", "[", "clusterInforItems", "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6251567474773417`*^9, 3.6251568388754563`*^9}, {
+  3.6251572802396135`*^9, 3.6251572976395893`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"jointData", " ", "=", " ", 
+   RowBox[{"Join", "[", 
+    RowBox[{"U", ",", 
+     RowBox[{"ArrayReshape", "[", 
+      RowBox[{"clusterInforItems", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Length", "[", "clusterInforItems", "]"}], ",", "1"}], 
+        "}"}]}], "]"}], ",", "2"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"jointItemData", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"itemdata", ",", 
+     RowBox[{"ArrayReshape", "[", 
+      RowBox[{"clusterInforItems", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Length", "[", "clusterInforItems", "]"}], ",", "1"}], 
+        "}"}]}], "]"}], ",", "2"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.625156846154874*^9, 3.6251568842109966`*^9}, {
+  3.6251582315686646`*^9, 3.6251582569221053`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 UPMC\\\\Cours\\\\FDMS\
+\\\\TME_rec\\\\IMG\\\\item_latent.png\>\"", ",", 
+   RowBox[{"ListDensityPlot", "[", 
+    RowBox[{"jointData", ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", " ", "\"\<Rainbow\>\""}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.6251569027040296`*^9, {3.625158128216691*^9, 3.6251581357470922`*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\\\\item_latent.png\"\>"], "Output",
+ CellChangeTimes->{3.6251569078423367`*^9, 3.625157303879939*^9, 
+  3.625158140191331*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "clusterMoviesTxt", " ", "=", 
+   "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\export_data\\\\movie_clusters.txt\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fsr", "=", 
+    RowBox[{"OpenWrite", "[", "clusterMoviesTxt", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"labeledMovies", " ", "=", " ", 
+   RowBox[{"ConstantArray", "[", 
+    RowBox[{
+     RowBox[{"List", "[", "]"}], ",", 
+     RowBox[{"Length", "[", "IClusterIDS", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"i", "=", "1"}], ",", 
+     RowBox[{"i", "\[LessEqual]", " ", 
+      RowBox[{"Length", "[", "clusterInforItems", "]"}]}], ",", 
+     RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"ID", " ", "=", " ", 
+       RowBox[{"clusterInforItems", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{
+        RowBox[{"labeledMovies", "[", 
+         RowBox[{"[", "ID", "]"}], "]"}], ",", 
+        RowBox[{"itemdata", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "2"}], "]"}], "]"}]}], "]"}], ";"}]}], "]"}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", " ", 
+    RowBox[{"Length", "[", "IClusterIDS", "]"}]}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ID", "=", 
+     RowBox[{"IClusterIDS", "[", 
+      RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"WriteString", "[", 
+     RowBox[{"fsr", ",", 
+      RowBox[{"\"\<Cluster: \>\"", "<>", 
+       RowBox[{"ToString", "[", "ID", "]"}], "<>", "\"\<\\n\\n\>\""}]}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"j", "=", "1"}], ",", 
+      RowBox[{"j", "\[LessEqual]", " ", 
+       RowBox[{"Length", "[", 
+        RowBox[{"labeledMovies", "[", 
+         RowBox[{"[", "ID", "]"}], "]"}], "]"}]}], ",", 
+      RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"moviename", "=", 
+        RowBox[{
+         RowBox[{"labeledMovies", "[", 
+          RowBox[{"[", "ID", "]"}], "]"}], "[", 
+         RowBox[{"[", "j", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"WriteString", "[", 
+        RowBox[{"fsr", ",", 
+         RowBox[{
+          RowBox[{"ToString", "[", "moviename", "]"}], "<>", 
+          "\"\<\\n\>\""}]}], "]"}], ";"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"WriteString", "[", 
+     RowBox[{"fsr", ",", "\"\<\\n\>\""}], "]"}], ";"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Close", "[", "fsr", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.625157126226411*^9, 3.6251571571651525`*^9}, {
+  3.6251572200686674`*^9, 3.625157259129834*^9}, {3.625157319798832*^9, 
+  3.6251573613411922`*^9}, {3.625157398896285*^9, 3.625157403877572*^9}, {
+  3.6251574904346704`*^9, 3.6251575767584734`*^9}, {3.6251582677777023`*^9, 
+  3.625158279137365*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenereLabel", " ", "=", " ", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+    "Import", "[", 
+     "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\ml-100k\\\\u.genre.csv\>\"", "]"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.625158732820485*^9, 3.6251587718046646`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["GenereLabel"], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"unknown\"\>", ",", "\<\"Action\"\>", ",", "\<\"Adventure\"\>", 
+   ",", "\<\"Animation\"\>", ",", "\<\"Children's\"\>", ",", "\<\"Comedy\"\>",
+    ",", "\<\"Crime\"\>", ",", "\<\"Documentary\"\>", ",", "\<\"Drama\"\>", 
+   ",", "\<\"Fantasy\"\>", ",", "\<\"Film-Noir\"\>", ",", "\<\"Horror\"\>", 
+   ",", "\<\"Musical\"\>", ",", "\<\"Mystery\"\>", ",", "\<\"Romance\"\>", 
+   ",", "\<\"Sci-Fi\"\>", ",", "\<\"Thriller\"\>", ",", "\<\"War\"\>", 
+   ",", "\<\"Western\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.625158783625313*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"e", "=", 
+   RowBox[{"{", 
+    RowBox[{"Plain", ",", "12", ",", 
+     RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "folder", "=", 
+   "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\\\\item_clusters\\\\\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"DirectoryQ", "[", "folder", "]"}], ",", 
+    RowBox[{
+     RowBox[{"DeleteDirectory", "[", 
+      RowBox[{"folder", ",", 
+       RowBox[{"DeleteContents", "\[Rule]", "True"}]}], "]"}], ";", 
+     RowBox[{"CreateDirectory", "[", "folder", "]"}]}], ",", 
+    RowBox[{"CreateDirectory", "[", "folder", "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", " ", 
+    RowBox[{"Length", "[", "IClusterIDS", "]"}]}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"ID", ",", "clusterUsers", ",", "p"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"ID", " ", "=", " ", 
+       RowBox[{"IClusterIDS", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"p", " ", "=", " ", 
+       RowBox[{"Select", "[", 
+        RowBox[{"jointItemData", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", 
+             RowBox[{"-", "1"}], "]"}], "]"}], "\[Equal]", "ID"}], "&"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"p", " ", "=", " ", 
+       RowBox[{"Drop", "[", 
+        RowBox[{"p", ",", "None", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "2"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"p", " ", "=", " ", 
+       RowBox[{"Drop", "[", 
+        RowBox[{"p", ",", "None", ",", 
+         RowBox[{"{", 
+          RowBox[{"-", "1"}], "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"p", "=", 
+       RowBox[{"Total", "[", "p", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"folder", "<>", 
+         RowBox[{"ToString", "[", "ID", "]"}], "<>", "\"\<.png\>\""}], ",", 
+        RowBox[{"PieChart", "[", 
+         RowBox[{"p", ",", 
+          RowBox[{"SectorOrigin", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"Automatic", ",", "1"}], "}"}]}], ",", 
+          RowBox[{"ChartLabels", "\[Rule]", 
+           RowBox[{"Placed", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"Style", "[", 
+                RowBox[{"#", ",", "e"}], "]"}], "&"}], "/@", "GenereLabel"}], 
+             ",", "\"\<RadialCallout\>\""}], "]"}]}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], "]"}]}]}], 
+    "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.625158836449273*^9, 3.625159005583867*^9}, {
+  3.6251590457110868`*^9, 3.6251590460991135`*^9}, {3.6251590884499974`*^9, 
+  3.6251590891740265`*^9}}]
+},
+WindowSize->{944, 1001},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 374, 9, 72, "Input"],
+Cell[934, 31, 2027, 48, 132, "Input"],
+Cell[CellGroupData[{
+Cell[2986, 83, 152, 3, 31, "Input"],
+Cell[3141, 88, 349, 7, 31, "Output"]
+}, Open  ]],
+Cell[3505, 98, 279, 7, 31, "Input"],
+Cell[3787, 107, 803, 18, 92, "Input"],
+Cell[4593, 127, 843, 22, 52, "Input"],
+Cell[CellGroupData[{
+Cell[5461, 153, 674, 14, 72, "Input"],
+Cell[6138, 169, 235, 3, 31, "Output"]
+}, Open  ]],
+Cell[6388, 175, 3218, 83, 352, "Input"],
+Cell[9609, 260, 357, 9, 72, "Input"],
+Cell[CellGroupData[{
+Cell[9991, 273, 37, 0, 31, "Input"],
+Cell[10031, 275, 577, 9, 52, "Output"]
+}, Open  ]],
+Cell[10623, 287, 3128, 82, 292, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

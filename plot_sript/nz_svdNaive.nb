@@ -1,0 +1,118 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      3508,        109]
+NotebookOptionsPosition[      3084,         90]
+NotebookOutlinePosition[      3428,        105]
+CellTagsIndexPosition[      3385,        102]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", 
+    "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\git_rep\\\\log_svd.csv\>\"", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.625199501551659*^9, 3.6251995276072073`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"Drop", "[", 
+    RowBox[{"data", ",", 
+     RowBox[{"{", "1", "}"}], ",", "None"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6251995296773033`*^9, 3.625199550186513*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"e1", " ", "=", " ", 
+   RowBox[{"{", " ", 
+    RowBox[{"Plain", ",", "14", ",", 
+     RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ga", "=", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"data", ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+     RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<k\>\"", ",", "e1"}], "]"}], ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<RMSE\>\"", " ", ",", "e1"}], "]"}]}], "}"}]}], ",", " ", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"Mesh", "\[Rule]", "All"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", 
+        RowBox[{"PointSize", "[", "0.01", "]"}]}], "}"}]}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.62519955274366*^9, 3.625199557389943*^9}, {
+   3.625199590625869*^9, 3.625199601076513*^9}, {3.6251996561283245`*^9, 
+   3.6251997659877663`*^9}, {3.625199824667348*^9, 3.625199868461933*^9}, {
+   3.625199907440219*^9, 3.625199948552621*^9}, {3.6251999904606657`*^9, 
+   3.6251999930838227`*^9}, 3.62520052805533*^9, 3.625252278620901*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "dir", " ", "=", " ", 
+   "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{"dir", "<>", "\"\<\\\\svd_nZ.png\>\""}], ",", "ga"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.625199987438895*^9, 3.625200023809619*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\\\\svd_nZ.png\"\>"], "Output",
+ CellChangeTimes->{3.625200024826671*^9, 3.625200531383173*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 816},
+WindowMargins->{{24, Automatic}, {Automatic, 31}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 310, 8, 92, "Input"],
+Cell[870, 30, 247, 6, 31, "Input"],
+Cell[1120, 38, 1331, 31, 92, "Input"],
+Cell[CellGroupData[{
+Cell[2476, 73, 386, 10, 92, "Input"],
+Cell[2865, 85, 203, 2, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

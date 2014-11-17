@@ -1,0 +1,154 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5044,        145]
+NotebookOptionsPosition[      4685,        129]
+NotebookOutlinePosition[      5028,        144]
+CellTagsIndexPosition[      4985,        141]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ub", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", 
+    "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\export_data\\\\user_bias.csv\>\"", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ub", " ", "=", " ", 
+   RowBox[{"Flatten", "[", "ub", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.625137726891841*^9, 3.6251377485490656`*^9}, {
+  3.6251377985724096`*^9, 3.625137811635149*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"e", " ", "=", 
+   RowBox[{"{", " ", 
+    RowBox[{"Plain", ",", "Large", ",", 
+     RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"g", "[", "1", "]"}], " ", "=", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{"ub", ",", 
+     RowBox[{"PlotLabel", "\[Rule]", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Bias User Apprises\>\"", ",", "e"}], "]"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"ChartElementFunction", "\[Rule]", 
+      RowBox[{"ChartElementData", "[", 
+       RowBox[{"\"\<GradientScaleRectangle\>\"", ",", 
+        RowBox[{"\"\<RoundingRadius\>\"", "\[Rule]", "3"}]}], "]"}]}]}], 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6251377524513006`*^9, 3.625137762851861*^9}, {
+   3.6251379281606536`*^9, 3.6251379597204437`*^9}, {3.6251379973965707`*^9, 
+   3.6251380211169314`*^9}, {3.6251381081998158`*^9, 3.625138144117801*^9}, {
+   3.6251381828906517`*^9, 3.6251381834086766`*^9}, {3.625138215455449*^9, 
+   3.6251382479002943`*^9}, {3.6251384259513326`*^9, 
+   3.6251384626953907`*^9}, {3.625138551553872*^9, 3.625138575072225*^9}, 
+   3.6252522438579354`*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ib", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", 
+    "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\export_data\\\\item_bias.csv\>\"", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ib", " ", "=", " ", 
+   RowBox[{"Flatten", "[", "ib", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e", " ", "=", 
+   RowBox[{"{", " ", 
+    RowBox[{"Plain", ",", "Large", ",", 
+     RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"g", "[", "2", "]"}], " ", "=", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{"ib", ",", 
+     RowBox[{"PlotLabel", "\[Rule]", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Bias Item Apprises\>\"", ",", "e"}], "]"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"ChartElementFunction", "\[Rule]", 
+      RowBox[{"ChartElementData", "[", 
+       RowBox[{"\"\<GradientScaleRectangle\>\"", ",", 
+        RowBox[{"\"\<RoundingRadius\>\"", "\[Rule]", "3"}]}], "]"}]}]}], 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6251378871373715`*^9, 3.625137887887413*^9}, {
+   3.6251385834196916`*^9, 3.6251386203877573`*^9}, 3.62525224819617*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "dir", " ", "=", " ", 
+   "\"\<C:\\\\Users\\\\Usuario\\\\Desktop\\\\ENSTA\\\\M2 \
+UPMC\\\\Cours\\\\FDMS\\\\TME_rec\\\\IMG\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"DirectoryQ", "[", "dir", "]"}], ",", ",", 
+    RowBox[{"CreateDirectory", "[", "dir", "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"placeb", "[", "i_", "]"}], ":=", 
+   RowBox[{"dir", "<>", "\"\<\\\\\>\"", "<>", 
+    RowBox[{"ToString", "[", "i", "]"}], "<>", "\"\<.png\>\""}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"placeb", "[", "\"\<bias_user\>\"", "]"}], ",", 
+    RowBox[{"g", "[", "1", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"placeb", "[", "\"\<bias_item\>\"", "]"}], ",", 
+    RowBox[{"g", "[", "2", "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6251386491273603`*^9, 3.6251387305259933`*^9}, {
+  3.625138792851501*^9, 3.6251388520308065`*^9}}]
+},
+WindowSize->{944, 1001},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 484, 12, 92, "Input"],
+Cell[1044, 34, 1238, 27, 72, "Input"],
+Cell[2285, 63, 1287, 32, 152, "Input"],
+Cell[3575, 97, 1106, 30, 132, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
